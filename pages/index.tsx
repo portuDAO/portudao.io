@@ -1,22 +1,28 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import tw, { styled } from "twin.macro";
+
+const Main = styled.main`
+  ${tw`flex flex-1 justify-center items-center flex-col py-8 px-0`}
+  height: calc(100% - 90px);
+`;
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div tw="h-screen">
       <Head>
         <title>portuDAO website</title>
         <meta name="description" content="portuDAO website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>portuDAO Public Page in progress...</h1>
-      </main>
+      <Main>
+        <h1 tw="text-3xl font-bold text-center">
+          portuDAO Public Page in progress...
+        </h1>
+      </Main>
 
-      <footer className={styles.footer}>
+      <footer tw="flex flex-1 py-8 px-0 border-t-2 justify-center items-center">
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
