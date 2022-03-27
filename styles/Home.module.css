@@ -1,9 +1,10 @@
 .container {
   padding: 0 2rem;
+  height: 100vh;
 }
 
 .main {
-  min-height: 100vh;
+  height: calc(100% - 85px);
   padding: 4rem 0;
   flex: 1;
   display: flex;
