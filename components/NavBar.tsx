@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
+import getConfig from "next/config";
 
 interface Props {
   light?: boolean;
@@ -37,6 +38,7 @@ const navButtonVariants = {
 
 export default function Navbar({ light, handleGetStarted }: Props) {
   const [menuOpen, toggleMenuOpen] = useState(false);
+  const { publicRuntimeConfig } = getConfig();
 
   return (
     <header css={[light ? tw`text-dark-green` : tw`text-white`]}>
@@ -70,7 +72,7 @@ export default function Navbar({ light, handleGetStarted }: Props) {
               <img
                 loading="lazy"
                 tw="h-20"
-                src="/img/logo.png"
+                src={`${publicRuntimeConfig.basePath}img/logo.png`}
                 alt="portuDAO logo"
               />
             </div>
