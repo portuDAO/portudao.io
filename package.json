@@ -20,6 +20,8 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.8.1",
     "@fullpage/react-fullpage": "^0.1.22",
+    "@reach/dialog": "^0.16.2",
+    "framer-motion": "^6.2.8",
     "next": "12.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
