@@ -2,7 +2,6 @@ import { keyframes } from "@emotion/react";
 import { Dialog } from "@reach/dialog";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import tw, { styled } from "twin.macro";
 
@@ -68,9 +67,9 @@ export default function Navbar({ light, handleGetStarted }: Props) {
         <Link href="/">
           <a>
             <div tw="my-auto cursor-pointer text-none">
-              <Image
-                width="80"
-                height="80"
+              <img
+                loading="lazy"
+                tw="h-20"
                 src="/img/logo.png"
                 alt="portuDAO logo"
               />
