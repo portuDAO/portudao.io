@@ -40,7 +40,7 @@ const DesktopView = () => {
   return (
     /* @ts-ignore */
     <ReactFullpage
-      licenseKey="28F93DAF-4E694AFE-A02F69B8-5B798EAA"
+      licenseKey="00993918-EA954DC2-80EEC371-41F48682"
       pluginWrapper={pluginWrapper}
       onLeave={onLeave}
       fadingEffect={true}
