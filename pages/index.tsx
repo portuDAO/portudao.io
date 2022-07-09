@@ -2,9 +2,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import tw, { styled } from "twin.macro";
 import ReactFullpage from "@fullpage/react-fullpage";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
-import MainSideBar from "../components/MainSideBar";
 import NavBar from "../components/NavBar";
 
 import Store, { Context } from "../helpers/store/Store";
@@ -13,20 +13,18 @@ import {
   UPDATE_PAGE_INDEX,
 } from "../helpers/store/actions";
 
-const Main = styled.main`
-  ${tw`flex flex-1 justify-center items-center flex-col py-8 px-0`}
-  height: calc(100% - 90px);
-`;
-
-const MinHeightContainer = styled.section`
-  @media screen and (max-width: 1023px) {
-    min-height: 900px;
-  }
-`;
-
 const DesktopView = () => {
   const [firstRender, setFirstRender] = useState(true);
   const [state, dispatch] = useContext<any>(Context);
+
+  const page1Ref = useRef(null);
+  const page2Ref = useRef(null);
+  const page3Ref = useRef(null);
+  const page4Ref = useRef(null);
+  const page5Ref = useRef(null);
+  const page6Ref = useRef(null);
+  const page7Ref = useRef(null);
+  const page8Ref = useRef(null);
 
   function onLeave(origin: any, destination: any, direction: any) {
     const pageIndex = destination.index;
@@ -38,65 +36,105 @@ const DesktopView = () => {
   };
 
   return (
-    /* @ts-ignore */
-    <ReactFullpage
-      licenseKey=""
-      pluginWrapper={pluginWrapper}
-      onLeave={onLeave}
-      fadingEffect={true}
-      fadingEffectKey="Ym90dG8uY29tX3JZV1ptRmthVzVuUldabVpXTjBDV24="
-      scrollingSpeed={650}
-      responsiveWidth={1024}
-      render={({ state, fullpageApi }) => {
-        if (firstRender && fullpageApi) {
-          dispatch({ type: STORE_FULLPAGE_API, payload: fullpageApi });
-          setFirstRender(false);
-        }
-        return (
-          <ReactFullpage.Wrapper>
-            <div className="section">
-              <MinHeightContainer tw="relative w-full h-full text-white bg-gradient-to-b from-dark-green to-dark-red lg:overflow-y-hidden lg:overflow-x-hidden">
-                <div tw="lg:mx-auto lg:w-8/12">
-                  <NavBar handleGetStarted={() => null} />
-                  <div tw="px-6 md:px-20 lg:px-3 z-20 lg:w-1/2 absolute top-0 bottom-0 lg:flex flex-col justify-center">
-                    <h1 tw="mt-32 text-5xl lg:mt-0 xl:text-desktop-big leading-almost-none lg:leading-tight">
-                      portuDAO
-                    </h1>
+    <>
+      <NavBar
+        pageRefs={[
+          page1Ref,
+          page2Ref,
+          page3Ref,
+          page4Ref,
+          page5Ref,
+          page6Ref,
+          page7Ref,
+          page8Ref,
+        ]}
+      />
+      {/* @ts-ignore */}
+      <ReactFullpage
+        licenseKey=""
+        pluginWrapper={pluginWrapper}
+        onLeave={onLeave}
+        fadingEffect={true}
+        fadingEffectKey=""
+        scrollingSpeed={650}
+        responsiveWidth={1024}
+        render={({ state, fullpageApi }) => {
+          if (firstRender && fullpageApi) {
+            dispatch({ type: STORE_FULLPAGE_API, payload: fullpageApi });
+            setFirstRender(false);
+          }
+          return (
+            <ReactFullpage.Wrapper>
+              <div ref={page1Ref} className="section">
+                <div tw="h-full flex justify-center items-center">
+                  <div tw="z-[-1]">
+                    <Image
+                      layout="fill"
+                      objectFit="cover"
+                      src="/img/bg-home.png"
+                      alt="home background"
+                    />
                   </div>
+                  <h1 tw="text-3xl font-bold text-center text-white">
+                    IN CODE WE TRUST
+                  </h1>
                 </div>
-              </MinHeightContainer>
-            </div>
-            <div className="section">
-              <div tw="h-full flex justify-center items-center">
-                <h1 tw="text-3xl font-bold text-center">SOBRE</h1>
               </div>
-            </div>
-            <div className="section">
-              <div tw="h-full flex justify-center items-center bg-gradient-to-b from-dark-green to-dark-red">
-                <h1 tw="text-3xl font-bold text-white text-center">MISSÃO</h1>
+              <div ref={page2Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">
+                    MEMBERSHIP
+                  </h1>
+                </div>
               </div>
-            </div>
-            <div className="section">
-              <div tw="h-full flex justify-center items-center">
-                <h1 tw="text-3xl font-bold text-center">OBJECTIVOS</h1>
+              <div ref={page3Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">MISSÃO</h1>
+                </div>
               </div>
-            </div>
-            <div className="section">
-              <div tw="h-full flex justify-center items-center bg-gradient-to-b from-dark-green to-dark-red">
-                <h1 tw="text-3xl font-bold text-white text-center">
-                  ECOSISTEMA
-                </h1>
+              <div ref={page4Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">SOBRE</h1>
+                </div>
               </div>
-            </div>
-            <div className="section">
-              <footer tw="flex flex-1 py-8 px-0 justify-center items-center">
-                <h1 tw="text-3xl font-bold text-center">FOOTER</h1>
-              </footer>
-            </div>
-          </ReactFullpage.Wrapper>
-        );
-      }}
-    />
+              <div ref={page5Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">
+                    ROADMAP
+                  </h1>
+                </div>
+              </div>
+              <div ref={page6Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">
+                    INCUBADORA
+                  </h1>
+                </div>
+              </div>
+              <div ref={page7Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">
+                    EVENTOS
+                  </h1>
+                </div>
+              </div>
+              <div ref={page8Ref} className="section">
+                <div tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">
+                    ACADEMIA
+                  </h1>
+                </div>
+              </div>
+              <div className="section">
+                <footer tw="h-full flex justify-center items-center bg-black">
+                  <h1 tw="text-3xl font-bold text-center text-white">FOOTER</h1>
+                </footer>
+              </div>
+            </ReactFullpage.Wrapper>
+          );
+        }}
+      />
+    </>
   );
 };
 
@@ -119,7 +157,6 @@ const Home: NextPage = () => {
           <meta name="description" content="portuDAO website" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <MainSideBar />
         <DesktopView />
       </main>
     </Store>

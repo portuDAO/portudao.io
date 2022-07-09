@@ -6,7 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dark-green': '#004C3A',
+        green: '#21EDC6',
+        red: '#EC5B56',
+        'dark-green': '#244740',
         'dark-red': '#F34708',
       },
       lineHeight: {
