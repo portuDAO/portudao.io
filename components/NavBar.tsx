@@ -5,19 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import tw, { styled } from "twin.macro";
+import getConfig from "next/config";
 
 import { Context } from "../helpers/store/Store";
 
 interface Props {
   light?: boolean;
   pageRefs: any[];
-}
-
-interface IConditionElement {
-  isWhite: boolean;
-  index: number;
-  text: string;
-  onClick: () => void;
 }
 
 const navButtonVariants = {
@@ -28,6 +22,7 @@ const navButtonVariants = {
 export default function Navbar({ light, pageRefs }: Props) {
   const [menuOpen, toggleMenuOpen] = useState(false);
   const [state, dispatch] = useContext(Context);
+  const { publicRuntimeConfig } = getConfig();
 
   const { pageIndex, fullpageApi } = state;
 
@@ -129,7 +124,7 @@ export default function Navbar({ light, pageRefs }: Props) {
                 <Image
                   width="108"
                   height="72"
-                  src="/icons/logo.svg"
+                  src={`${publicRuntimeConfig.basePath}icons/logo.svg`}
                   alt="portuDAO logo"
                 />
               </Link>
@@ -276,7 +271,6 @@ const fadeAndslideIn = keyframes`
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
     transform: translateX(0);

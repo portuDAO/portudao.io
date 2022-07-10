@@ -4,6 +4,7 @@ import tw, { styled } from "twin.macro";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import getConfig from "next/config";
 
 import NavBar from "../components/NavBar";
 
@@ -17,6 +18,7 @@ const DesktopView = () => {
   const [firstRender, setFirstRender] = useState(true);
   const [state, dispatch] = useContext<any>(Context);
   const vidRef: any = useRef(null);
+  const { publicRuntimeConfig } = getConfig();
 
   const page1Ref = useRef(null);
   const page2Ref = useRef(null);
@@ -78,7 +80,7 @@ const DesktopView = () => {
                     <Image
                       layout="fill"
                       objectFit="cover"
-                      src="/img/bg-home.png"
+                      src={`${publicRuntimeConfig.basePath}img/bg-home.png`}
                       alt="home background"
                     />
                   </div>
@@ -123,7 +125,10 @@ const DesktopView = () => {
                   </div>
                   <div>
                     <video tw="w-full h-auto" loop muted autoPlay ref={vidRef}>
-                      <source src="/videos/portudao-nft.mp4" type="video/mp4" />
+                      <source
+                        src={`${publicRuntimeConfig.basePath}videos/portudao-nft.mp4`}
+                        type="video/mp4"
+                      />
                       Your browser does not support the video tag.
                     </video>
                   </div>
@@ -173,7 +178,7 @@ const DesktopView = () => {
                     <Image
                       layout="fill"
                       objectFit="cover"
-                      src="/img/bg-footer.png"
+                      src={`${publicRuntimeConfig.basePath}img/bg-footer.png`}
                       alt="home background"
                     />
                   </div>
@@ -198,7 +203,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/facebook.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/facebook.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -206,7 +211,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/discord.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/discord.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -214,16 +219,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/linkedin.svg"
-                        alt="portuDAO logo"
-                      />
-                    </div>
-                    <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      {" "}
-                      <Image
-                        width="36"
-                        height="36"
-                        src="/icons/medium.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/linkedin.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -232,7 +228,16 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/mail.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/medium.svg`}
+                        alt="portuDAO logo"
+                      />
+                    </div>
+                    <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
+                      {" "}
+                      <Image
+                        width="36"
+                        height="36"
+                        src={`${publicRuntimeConfig.basePath}icons/mail.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -240,7 +245,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/twitter.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/twitter.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -248,7 +253,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/youtube.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/youtube.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -256,7 +261,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/instagram.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/instagram.svg`}
                         alt="portuDAO logo"
                       />
                     </div>
@@ -264,7 +269,7 @@ const DesktopView = () => {
                       <Image
                         width="36"
                         height="36"
-                        src="/icons/telegram.svg"
+                        src={`${publicRuntimeConfig.basePath}icons/telegram.svg`}
                         alt="portuDAO logo"
                       />
                     </div>

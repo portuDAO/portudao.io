@@ -1,5 +1,8 @@
 import { Global, css } from "@emotion/react";
 import tw, { GlobalStyles as BaseStyles } from "twin.macro";
+import getConfig from "next/config";
+
+const { publicRuntimeConfig } = getConfig();
 
 const customStyles = css`
   html,
@@ -17,19 +20,19 @@ const customStyles = css`
 
   @font-face {
     font-family: Poppins;
-    src: url(/fonts/Poppins-Regular.ttf);
+    src: url(${publicRuntimeConfig.basePath}fonts/Poppins-Regular.ttf);
     font-display: swap;
   }
 
   @font-face {
     font-family: PoppinsMedium;
-    src: url(/fonts/Poppins-Medium.ttf);
+    src: url(${publicRuntimeConfig.basePath}fonts/Poppins-Medium.ttf);
     font-display: swap;
   }
 
   @font-face {
     font-family: PoppinsBold;
-    src: url(/fonts/Poppins-Bold.ttf);
+    src: url(${publicRuntimeConfig.basePath}fonts/Poppins-Bold.ttf);
     font-display: swap;
   }
 `;
