@@ -2,7 +2,6 @@ import { keyframes } from "@emotion/react";
 import { Dialog } from "@reach/dialog";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useContext, useState } from "react";
 import tw, { styled } from "twin.macro";
 import getConfig from "next/config";
@@ -121,7 +120,8 @@ export default function Navbar({ light, pageRefs }: Props) {
               onClick={() => fullpageApi.moveTo(1)}
             >
               <Link href="/" passHref>
-                <Image
+                <img
+                  loading="lazy"
                   width="108"
                   height="72"
                   src={`${publicRuntimeConfig.basePath}icons/logo.svg`}

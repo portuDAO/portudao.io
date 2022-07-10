@@ -3,7 +3,6 @@ import Head from "next/head";
 import tw, { styled } from "twin.macro";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { useContext, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import getConfig from "next/config";
 
 import NavBar from "../components/NavBar";
@@ -76,14 +75,9 @@ const DesktopView = () => {
             <ReactFullpage.Wrapper>
               <div ref={page1Ref} className="section">
                 <div tw="h-full flex flex-col justify-center items-center">
-                  <div tw="z-[-1]">
-                    <Image
-                      layout="fill"
-                      objectFit="cover"
-                      src={`${publicRuntimeConfig.basePath}img/bg-home.png`}
-                      alt="home background"
-                    />
-                  </div>
+                  <BGImg
+                    path={`${publicRuntimeConfig.basePath}img/bg-home.png`}
+                  />
                   <h1 tw="text-5xl lg:text-7xl font-poppinsBold text-center text-white">
                     IN CODE WE TRUST
                   </h1>
@@ -174,14 +168,9 @@ const DesktopView = () => {
               </div>
               <div className="section">
                 <footer tw="h-full flex flex-col justify-center items-center m-4 lg:m-0">
-                  <div tw="z-[-1]">
-                    <Image
-                      layout="fill"
-                      objectFit="cover"
-                      src={`${publicRuntimeConfig.basePath}img/bg-footer.png`}
-                      alt="home background"
-                    />
-                  </div>
+                  <BGImg
+                    path={`${publicRuntimeConfig.basePath}img/bg-footer.png`}
+                  />
                   <h1 tw="text-4xl lg:text-6xl text-center text-white">
                     Join our mailing list
                   </h1>
@@ -200,7 +189,8 @@ const DesktopView = () => {
                   </div>
                   <div tw="flex absolute bottom-24 lg:bottom-20 text-white/40">
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/facebook.svg`}
@@ -208,7 +198,8 @@ const DesktopView = () => {
                       />
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/discord.svg`}
@@ -216,7 +207,8 @@ const DesktopView = () => {
                       />
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/linkedin.svg`}
@@ -225,7 +217,8 @@ const DesktopView = () => {
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
                       {" "}
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/medium.svg`}
@@ -234,7 +227,8 @@ const DesktopView = () => {
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
                       {" "}
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/mail.svg`}
@@ -242,7 +236,8 @@ const DesktopView = () => {
                       />
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/twitter.svg`}
@@ -250,7 +245,8 @@ const DesktopView = () => {
                       />
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/youtube.svg`}
@@ -258,7 +254,8 @@ const DesktopView = () => {
                       />
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/instagram.svg`}
@@ -266,7 +263,8 @@ const DesktopView = () => {
                       />
                     </div>
                     <div tw="opacity-60 hover:opacity-100 hover:cursor-pointer mx-1">
-                      <Image
+                      <img
+                        loading="lazy"
                         width="36"
                         height="36"
                         src={`${publicRuntimeConfig.basePath}icons/telegram.svg`}
@@ -326,4 +324,18 @@ const GreenButton = styled.button`
 
 const RedButton = styled.button`
   ${tw`mx-6 bg-red hover:opacity-80 focus:ring-red py-2.5 text-black focus:outline-none focus:ring-4 transition duration-500 lg:h-[3.75rem] w-full max-w-[200px]`}
+`;
+
+const BGImg = styled.div`
+  background: ${(props: { path: string }) => `url(${props.path}) no-repeat`};
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 `;
