@@ -4,10 +4,19 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      poppins: ['Poppins', 'ui-sans-serif'],
+      poppinsMed: ['PoppinsMedium', 'ui-sans-serif'],
+      poppinsBold: ['PoppinsBold', 'ui-sans-serif'],
+    },
     extend: {
       colors: {
-        'dark-green': '#004C3A',
+        green: '#21EDC6',
+        red: '#EC5B56',
+        'dark-green': '#244740',
         'dark-red': '#F34708',
+        'input': '#050505',
+        'input-gray': '#303030'
       },
       lineHeight: {
         'almost-none': '1.15',
