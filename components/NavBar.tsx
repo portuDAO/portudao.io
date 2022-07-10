@@ -10,6 +10,7 @@ import { Context } from "../helpers/store/Store";
 
 interface Props {
   light?: boolean;
+  pageRefs: any[];
 }
 
 interface IConditionElement {
@@ -30,7 +31,7 @@ export default function Navbar({ light, pageRefs }: Props) {
 
   const { pageIndex, fullpageApi } = state;
 
-  const handleCloseMenu = (ref) => {
+  const handleCloseMenu = (ref: any) => {
     toggleMenuOpen(false);
 
     setTimeout(() => {
@@ -66,7 +67,7 @@ export default function Navbar({ light, pageRefs }: Props) {
         </svg>
       </MenuButton>
 
-      <div tw="z-30 px-6 md:px-0 mt-8 flex justify-center top-0 right-0 left-0 bottom-0 absolute">
+      <div tw="z-30 px-6 md:px-0 mt-8 flex justify-center top-0 right-0 left-0 absolute">
         <nav tw="hidden lg:block">
           <ul tw="hidden text-xs tracking-wider lg:flex lg:items-center">
             <motion.li
