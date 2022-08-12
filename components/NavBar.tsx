@@ -2,7 +2,6 @@ import { keyframes } from "@emotion/react";
 import { Dialog } from "@reach/dialog";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { useContext, useState } from "react";
 import tw, { styled } from "twin.macro";
 import getConfig from "next/config";
@@ -11,7 +10,6 @@ import { Context } from "../helpers/store/Store";
 
 interface Props {
   light?: boolean;
-  pageRefs: any[];
 }
 
 const navButtonVariants = {
@@ -19,26 +17,24 @@ const navButtonVariants = {
   whileTap: { scale: 1.05 },
 };
 
-export default function Navbar({ light, pageRefs }: Props) {
+export default function Navbar({ light }: Props) {
   const [menuOpen, toggleMenuOpen] = useState(false);
   const [state, dispatch] = useContext(Context);
   const { publicRuntimeConfig } = getConfig();
 
   const { pageIndex, fullpageApi } = state;
 
-  const handleCloseMenu = (ref: any) => {
+  const handleCloseMenu = (section: string) => {
     toggleMenuOpen(false);
 
-    setTimeout(() => {
-      ref.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 250);
+    fullpageApi.moveTo(section);
   };
 
   return (
-    <header css={[light ? tw`text-dark-green` : tw`text-white`]}>
+    <header
+      id="header-menu"
+      css={[light ? tw`text-dark-green` : tw`text-white`]}
+    >
       <MenuButton
         onClick={toggleMenuOpen}
         css={[
@@ -62,7 +58,12 @@ export default function Navbar({ light, pageRefs }: Props) {
         </svg>
       </MenuButton>
 
-      <div tw="z-30 px-6 md:px-0 mt-8 flex justify-center top-0 right-0 left-0 absolute">
+      <div
+        css={[
+          tw`z-30 px-6 py-2 md:px-0 flex justify-center top-0 right-0 left-0 absolute`,
+          pageIndex !== 0 && tw`bg-black`,
+        ]}
+      >
         <nav tw="hidden lg:block">
           <ul tw="hidden text-xs tracking-wider lg:flex lg:items-center">
             <motion.li
@@ -75,7 +76,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(1)}
             >
-              <Link href="/">Home</Link>
+              <Link href="#home" data-menuanchor="home">
+                Home
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -87,7 +90,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(2)}
             >
-              <Link href="/">Membership</Link>
+              <Link href="#membership" data-menuanchor="membership">
+                Membership
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -99,7 +104,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(3)}
             >
-              <Link href="/">Missão</Link>
+              <Link href="#missao" data-menuanchor="missao">
+                Missão
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -111,7 +118,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(4)}
             >
-              <Link href="/">Sobre</Link>
+              <Link href="#sobre" data-menuanchor="sobre">
+                Sobre
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -121,7 +130,8 @@ export default function Navbar({ light, pageRefs }: Props) {
               onClick={() => fullpageApi.moveTo(1)}
             >
               <Link href="/" passHref>
-                <Image
+                <img
+                  loading="lazy"
                   width="108"
                   height="72"
                   src={`${publicRuntimeConfig.basePath}icons/logo.svg`}
@@ -139,7 +149,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(5)}
             >
-              <Link href="/">Roadmap</Link>
+              <Link href="#roadmap" data-menuanchor="roadmap">
+                Roadmap
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -151,7 +163,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(6)}
             >
-              <Link href="/">Incubadora</Link>
+              <Link href="#incubadora" data-menuanchor="incubadora">
+                Incubadora
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -163,7 +177,9 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(7)}
             >
-              <Link href="/">Eventos</Link>
+              <Link href="#eventos" data-menuanchor="eventos">
+                Eventos
+              </Link>
             </motion.li>
             <motion.li
               variants={navButtonVariants}
@@ -175,7 +191,23 @@ export default function Navbar({ light, pageRefs }: Props) {
               ]}
               onClick={() => fullpageApi.moveTo(8)}
             >
-              <Link href="/">Academia</Link>
+              <Link href="#academia" data-menuanchor="academia">
+                Academia
+              </Link>
+            </motion.li>
+            <motion.li
+              variants={navButtonVariants}
+              whileHover="whileHover"
+              whileTap="whileTap"
+              css={[
+                tw`px-2 py-1 cursor-pointer xl:px-4 text-green hover:text-white`,
+                pageIndex === 8 && tw`text-white`,
+              ]}
+              onClick={() => fullpageApi.moveTo(9)}
+            >
+              <Link href="#portuswap" data-menuanchor="portuswap">
+                Portuswap
+              </Link>
             </motion.li>
           </ul>
         </nav>
@@ -209,50 +241,71 @@ export default function Navbar({ light, pageRefs }: Props) {
 
             <nav>
               <ul tw="flex flex-col items-center mt-40 text-3xl">
-                <li tw="p-2 px-4" onClick={() => handleCloseMenu(pageRefs[0])}>
-                  <Link href="/">Home</Link>
+                <li tw="p-2 px-4" onClick={() => handleCloseMenu("home")}>
+                  <Link href="#home" data-menuanchor="home">
+                    Home
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[1])}
+                  onClick={() => handleCloseMenu("membership")}
                 >
-                  <Link href="/">Membership</Link>
+                  <Link href="#membership" data-menuanchor="membership">
+                    Membership
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[2])}
+                  onClick={() => handleCloseMenu("missao")}
                 >
-                  <Link href="/">Missão</Link>
+                  <Link href="#missao" data-menuanchor="missao">
+                    Missão
+                  </Link>
+                </li>
+                <li tw="p-2 px-4 mt-4" onClick={() => handleCloseMenu("sobre")}>
+                  <Link href="#sobre" data-menuanchor="sobre">
+                    Sobre
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[3])}
+                  onClick={() => handleCloseMenu("roadmap")}
                 >
-                  <Link href="/">Sobre</Link>
+                  <Link href="#roadmap" data-menuanchor="roadmap">
+                    Roadmap
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[4])}
+                  onClick={() => handleCloseMenu("incubadora")}
                 >
-                  <Link href="/">Roadmap</Link>
+                  <Link href="#incubadora" data-menuanchor="incubadora">
+                    Incubadora
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[5])}
+                  onClick={() => handleCloseMenu("eventos")}
                 >
-                  <Link href="/">Incubadora</Link>
+                  <Link href="#eventos" data-menuanchor="eventos">
+                    Eventos
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[6])}
+                  onClick={() => handleCloseMenu("academia")}
                 >
-                  <Link href="/">Eventos</Link>
+                  <Link href="#academia" data-menuanchor="academia">
+                    Academia
+                  </Link>
                 </li>
                 <li
                   tw="p-2 px-4 mt-4"
-                  onClick={() => handleCloseMenu(pageRefs[7])}
+                  onClick={() => handleCloseMenu("portuswap")}
                 >
-                  <Link href="/">Academia</Link>
+                  <Link href="#portuswap" data-menuanchor="portuswap">
+                    Portuswap
+                  </Link>
                 </li>
               </ul>
             </nav>
